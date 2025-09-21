@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Frete</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    <div class="container">
+    <h1 class="titulo">Calculadora de Frete da Firma</h1>
+    <form>  
+       <label for="distancia">Distancia em km: </label>
+       <input id="distancia" type="number">
+       <br><br>
+         
+       
+       <label for="precoDiesel">Preço Do Diesel R$:</label>
+       <input id="precoDiesel" type="number">
+       <br><br>
+
+
+      <label for="consumo">Consumo do Caminhão por Km/l:</label>
+      <input id="consumo" type="number">
+      <br><br>
+
+      <button type="button" id="botaoCalcular">Calcular Frete</button>
+
+    </form>
+    <div id="resultado"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

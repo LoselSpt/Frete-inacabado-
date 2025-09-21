@@ -1,0 +1,46 @@
+/* Cor do fundo so site */
+
+body{
+    background-image: url('https://plus.unsplash.com/premium_photo-1661932036915-4fd90bec6e8a?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bG9nJUMzJUFEc3RpY2F8ZW58MHx8MHx8fDA%3D');
+
+
+}
+
+.container{
+    background-color: rgba(0, 4, 61, 0.822);
+    border-radius: 2%;
+    color:rgb(255, 255, 255);
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+
+}
+h1.titulo{
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+input, button{
+   
+    display: block;
+    width: 100%  ;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+button{
+    /* background-color: rgb(255, 238, 0);
+    color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer; */
+    font: 26px 500 Consolas, monaco, monospace;
+  color: #000000;
+  background: radial-gradient(circle, #adaef3 7%, #0022b9 100%);
+  border: 4px solid #000000;
+  border-radius: 7px;
+  outline: none;
+  padding: 0px 71px;
+  min-height: 46px;
+min-width: 11px;
+  
+  cursor: pointer;
+}
