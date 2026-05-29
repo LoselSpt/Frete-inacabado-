@@ -3,34 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Frete</title>
+    <title>Calculadora de Frete Premium 🚚</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="background-overlay"></div>
+    
+    <div class="app-container">
+        <!-- Cabeçalho -->
+        <header class="app-header">
+            <div class="logo-area">
+                <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="1" y="3" width="15" height="13" rx="2" ry="2"></rect>
+                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                </svg>
+                <h1 class="titulo">LOGI<span>FRETE</span></h1>
+            </div>
+            <p class="subtitle">Cálculo instantâneo de frete, custos e margem de lucro</p>
+        </header>
 
+        <div class="dashboard-grid">
+            <!-- Painel de Inputs -->
+            <section class="card form-card">
+                <h2 class="card-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    Dados da Viagem
+                </h2>
+                <form id="freteForm">
+                    <div class="input-group">
+                        <label for="distancia">
+                            <span class="label-text">Distância total (km)</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            <input id="distancia" type="number" placeholder="Ex: 450" required min="1" step="any">
+                            <span class="input-suffix">km</span>
+                        </div>
+                    </div>
 
-    <div class="container">
-    <h1 class="titulo">Calculadora de Frete da Firma</h1>
-    <form>  
-       <label for="distancia">Distancia em km: </label>
-       <input id="distancia" type="number">
-       <br><br>
-         
-       
-       <label for="precoDiesel">Preço Do Diesel R$:</label>
-       <input id="precoDiesel" type="number">
-       <br><br>
+                    <div class="input-group">
+                        <label for="precoDiesel">
+                            <span class="label-text">Preço do Diesel (por litro)</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 22h12M4 2h10a2 2 0 0 1 2 2v18M16 9h3a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-3M6 6h6M6 10h6"/>
+                            </svg>
+                            <input id="precoDiesel" type="number" placeholder="Ex: 5.89" required min="0.01" step="any">
+                            <span class="input-suffix">R$</span>
+                        </div>
+                    </div>
 
+                    <div class="input-group">
+                        <label for="consumo">
+                            <span class="label-text">Média do Caminhão (km/l)</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                            <input id="consumo" type="number" placeholder="Ex: 2.5" required min="0.1" step="any">
+                            <span class="input-suffix">km/l</span>
+                        </div>
+                    </div>
 
-      <label for="consumo">Consumo do Caminhão por Km/l:</label>
-      <input id="consumo" type="number">
-      <br><br>
+                    <button type="button" id="botaoCalcular" class="btn-primary">
+                        <span>Calcular Frete</span>
+                        <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </form>
+            </section>
 
-      <button type="button" id="botaoCalcular">Calcular Frete</button>
+            <!-- Painel de Resultados -->
+            <section class="card results-card" id="resultadosPainel">
+                <div class="empty-state" id="resultadoVazio">
+                    <div class="empty-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="9" y1="15" x2="15" y2="15"></line>
+                        </svg>
+                    </div>
+                    <h3>Aguardando Dados</h3>
+                    <p>Preencha os campos da viagem e clique em Calcular para gerar o relatório completo da firma.</p>
+                </div>
 
-    </form>
-    <div id="resultado"></div>
+                <div class="results-content hidden" id="resultadoReal">
+                    <h2 class="card-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        Demonstrativo de Frete
+                    </h2>
+
+                    <!-- Valor Principal -->
+                    <div class="main-metric">
+                        <span class="metric-label">Valor Cobrado do Cliente</span>
+                        <div class="metric-value" id="resCustoFrete">R$ 0,00</div>
+                    </div>
+
+                    <!-- Distribuição Gráfica -->
+                    <div class="distribution-section">
+                        <span class="section-label">Distribuição do Valor Recebido</span>
+                        <div class="progress-bar-container">
+                            <div class="progress-segment segment-diesel" id="barDiesel" style="width: 0%"></div>
+                            <div class="progress-segment segment-motorista" id="barMotorista" style="width: 0%"></div>
+                            <div class="progress-segment segment-empresa" id="barEmpresa" style="width: 0%"></div>
+                        </div>
+                        <div class="legend-container">
+                            <span class="legend-item"><span class="dot dot-diesel"></span> Diesel (<span id="pctDiesel">0%</span>)</span>
+                            <span class="legend-item"><span class="dot dot-motorista"></span> Motorista (<span id="pctMotorista">0%</span>)</span>
+                            <span class="legend-item"><span class="dot dot-empresa"></span> Empresa (<span id="pctEmpresa">0%</span>)</span>
+                        </div>
+                    </div>
+
+                    <!-- Grid de Métricas Secundárias -->
+                    <div class="metrics-grid">
+                        <div class="sub-card card-diesel">
+                            <div class="sub-card-header">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22h12M4 2h10a2 2 0 0 1 2 2v18M16 9h3a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-3M6 6h6M6 10h6"/></svg>
+                                <span>Custo do Diesel</span>
+                            </div>
+                            <div class="sub-card-value" id="resCustoDiesel">R$ 0,00</div>
+                        </div>
+
+                        <div class="sub-card card-motorista">
+                            <div class="sub-card-header">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a7 7 0 1 0 10 10"/></svg>
+                                <span>Pago ao Motorista</span>
+                            </div>
+                            <div class="sub-card-value" id="resValorMotorista">R$ 0,00</div>
+                            <span class="sub-card-meta">70% do Lucro Bruto</span>
+                        </div>
+
+                        <div class="sub-card card-empresa">
+                            <div class="sub-card-header">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                <span>Lucro da Empresa</span>
+                            </div>
+                            <div class="sub-card-value" id="resLucroEmpresa">R$ 0,00</div>
+                            <span class="sub-card-meta">30% do Lucro Bruto</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <footer class="main-footer">
+            <p>Calculadora de Frete da Firma © 2026. Feito com ❤️ e café forte.</p>
+        </footer>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
